@@ -1,21 +1,19 @@
-import collections
-
 N = int(input())
 lis = input().split()
-i = 0
 
-print(lis)
+count_list = [0] * (N + 1)
 
-while i < N:
-  #lis = lis.pop(i)
-  count_dict = collections.Counter(lis)
+for k in lis:
+  count_list[int(k)] += 1
 
-  print(count_dict.most_common(N))
+Sum = 0
+for k in count_list:
+  Sum += ( k * (k-1)) // 2
 
-  M = count_dict.most_common(N)
-  ans = 0
 
-  for k in count_dict.values():
-    x = (k * (k-1)) // 2
-    ans += x
+
+for i in lis:
+  count = count_list[int(i)]
+  s = int(count) - 1
+  ans = Sum - s
   print(ans)
