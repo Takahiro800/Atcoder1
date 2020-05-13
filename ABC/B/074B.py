@@ -9,6 +9,6 @@ for x in X:
 	if x <= line:
 		ans += x
 	else:
-		ans += K - line
+		ans += (K - x)
 ans *= 2
 print(ans)
