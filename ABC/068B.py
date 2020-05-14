@@ -1,6 +1,6 @@
 N = int(input())
 
-if N >= 64:
+""" if N >= 64:
   print(64)
 elif N >=32:
   print(32)
@@ -13,4 +13,7 @@ elif N >= 4:
 elif N >= 2:
   print(2)
 else:
-  print(1)
+  print(1) """
+
+k = len(bin(N)) - 3
+print(2**k)
