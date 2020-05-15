@@ -5,6 +5,7 @@ l = [0]
 
 for i in range(N):
   if S[i] == 'A' or S[i] == 'C' or S[i] == 'G' or S[i] == 'T':
+  # S[i] in 'ACGT'
     a += 1
     b = 1
   else:
