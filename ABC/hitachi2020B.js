@@ -19,28 +19,26 @@ function Main(input) {
   const A = myconv(input[0], 4)[0];
   const B = myconv(input[0], 4)[1];
   const M = myconv(input[0], 4)[2];
-  const a = myconv(input[1], 4);
-  const b = myconv(input[2], 4);
+  const list_a = myconv(input[1], 4);
+  const list_b = myconv(input[2], 4);
   input.shift();
   input.shift();
   input.shift();
-  let price = [];
-  for(let i = 0; i < A; i++) {
-    for(let j = 0; j < B; j++) {
-      let p = a[i] + b[j];
-      price.push(p);
-    }
-  }
+
+  a = Math.min.apply(null, list_a);
+  b = Math.min.apply(null, list_b);
+  let m = a + b;
+
   len = input.length;
   for(let i = 0; i < len; i++){
-    let x = myconv(input[i], 4)[0];
-    let y = myconv(input[i], 4)[1];
+    let x = myconv(input[i], 4)[0] - 1;
+    let y = myconv(input[i], 4)[1] - 1;
     let c = myconv(input[i], 4)[2];
-
-    let k = (x-1)*B + y - 1;
-    const origin_p = price[k];
-    price.push(price[k] - c);
+    let deals = list_a[x] + list_b[y] - c;
+    if (deals < m) {
+      m = deals;
+    }
   }
-  console.log(Math.min.apply(null, price));
+  console.log(m);
 }
 Main(myin());
