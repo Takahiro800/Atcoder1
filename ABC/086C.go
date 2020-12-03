@@ -25,7 +25,7 @@ func main() {
 }
 
 func check(dt, dist int) bool {
-	return dist <= dt && dist%2 == dt&2
+	return dist <= dt && dist%2 == dt%2
 }
 
 func abs(a int) int {
