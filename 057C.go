@@ -1,29 +1,25 @@
+package main
+
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strconv"
 )
 
-func min(nums ...int) {
-	min := nums[0]
-	for _, n := range nums {
-		if n <= min {
-			min = n
-		}
-	}
-	return min
-}
-
-func bitSearch() {
-	for bits := 0; bits < (1 << uint64(n)); bits++ {
-		// bitsの各要素についてのループ
-		for i := 0; i < n; i++ {
-			// bitsのi個目の要素の状態がonかどうかチェック
-			if (bits>>uint64(i))&1 == 1 {
-				// 何かしらの処理
+func main() {
+	N := ReadInt()
+	ans := 12
+	for i := 1; i*i <= N; i++ {
+		if N%i == 0 {
+			a := N / i
+			st := strconv.Itoa(a)
+			if ans > len(st) {
+				ans = len(st)
 			}
 		}
 	}
+	fmt.Println(ans)
 }
 
 var sc = bufio.NewScanner(os.Stdin)
@@ -53,9 +49,16 @@ func ReadString() string {
 
 // ReadInstSlice returns an integer slice that han n integers.
 func ReadIntSlice(n int) []int {
-	b := make(n int) []int
+	b := make([]int, n)
 	for i := 0; i < n; i++ {
 		b[i] = ReadInt()
+	}
+	return b
+}
+
+func min(a, b int) int {
+	if a <= b {
+		return a
 	}
 	return b
 }
