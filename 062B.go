@@ -9,31 +9,19 @@ import (
 )
 
 var (
-	S string
-	T string
+	H, W int
 )
 
 func main() {
-	S = Read()
-	T = strings.Repeat("01", 5*10*10*10*10*10*10*10)
-	l := len(S)
-	a := T[0:l]
-	b := T[1 : l+1]
-	k := countDif(a, S)
-	t := countDif(b, S)
-
-	ans := min(k, t)
-	fmt.Println(ans)
-}
-
-func countDif(x, y string) int {
-	ans := 0
-	for i := 0; i < len(x); i++ {
-		if x[i] != y[i] {
-			ans++
-		}
+	c := ReadIntSlice(2)
+	H = c[0]
+	W = c[1]
+	fmt.Println(strings.Repeat("#", W+2))
+	for i := 0; i < H; i++ {
+		a := Read()
+		fmt.Println("#" + a + "#")
 	}
-	return ans
+	fmt.Println(strings.Repeat("#", W+2))
 }
 
 var sc = bufio.NewScanner(os.Stdin)

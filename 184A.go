@@ -5,35 +5,23 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"strings"
 )
 
 var (
-	S string
-	T string
+	a, b, c, d int
 )
 
 func main() {
-	S = Read()
-	T = strings.Repeat("01", 5*10*10*10*10*10*10*10)
-	l := len(S)
-	a := T[0:l]
-	b := T[1 : l+1]
-	k := countDif(a, S)
-	t := countDif(b, S)
+	A := ReadIntSlice(2)
+	a = A[0]
+	b = A[1]
 
-	ans := min(k, t)
+	B := ReadIntSlice(2)
+	c = B[0]
+	d = B[1]
+
+	ans := a*d - b*c
 	fmt.Println(ans)
-}
-
-func countDif(x, y string) int {
-	ans := 0
-	for i := 0; i < len(x); i++ {
-		if x[i] != y[i] {
-			ans++
-		}
-	}
-	return ans
 }
 
 var sc = bufio.NewScanner(os.Stdin)
@@ -63,16 +51,9 @@ func ReadString() string {
 
 // ReadInstSlice returns an integer slice that han n integers.
 func ReadIntSlice(n int) []int {
-	b := make([]int, n)
+	z := make([]int, n)
 	for i := 0; i < n; i++ {
-		b[i] = ReadInt()
+		z[i] = ReadInt()
 	}
-	return b
-}
-
-func min(a, b int) int {
-	if a <= b {
-		return a
-	}
-	return b
+	return z
 }

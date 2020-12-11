@@ -53,7 +53,7 @@ func ReadString() string {
 
 // ReadInstSlice returns an integer slice that han n integers.
 func ReadIntSlice(n int) []int {
-	b := make(n int) []int
+	b := make(n, []int)
 	for i := 0; i < n; i++ {
 		b[i] = ReadInt()
 	}

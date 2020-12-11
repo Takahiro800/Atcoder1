@@ -5,35 +5,54 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"strings"
 )
 
 var (
-	S string
-	T string
+	N, M int
+	S    [][]int
+	P    []int
 )
 
 func main() {
-	S = Read()
-	T = strings.Repeat("01", 5*10*10*10*10*10*10*10)
-	l := len(S)
-	a := T[0:l]
-	b := T[1 : l+1]
-	k := countDif(a, S)
-	t := countDif(b, S)
+	b := ReadIntSlice(2)
+	N = b[0]
+	M = b[1]
 
-	ans := min(k, t)
-	fmt.Println(ans)
-}
+	for i := 0; i < M; i++ {
+		k := ReadInt()
+		row := ReadIntSlice(k)
 
-func countDif(x, y string) int {
+		for j := 0; j < len(row); j++ {
+			row[j]--
+		}
+		S = append(S, row)
+	}
+	P = ReadIntSlice(M)
+
 	ans := 0
-	for i := 0; i < len(x); i++ {
-		if x[i] != y[i] {
+	for bits := 0; bits < (1 << uint64(N)); bits++ {
+		flg := true
+		// bitsの各要素についてのループ
+		for i := 0; i < M; i++ {
+			c := 0
+			for _, j := range S[i] {
+				// bitsのi個目の要素の状態がonかどうかチェック
+				if (bits>>uint64(j))&1 == 1 {
+					// 何かしらの処理
+					c++
+				}
+			}
+			if c%2 != P[i] {
+				flg = false
+				break
+			}
+		}
+		if flg {
 			ans++
 		}
 	}
-	return ans
+	fmt.Println(ans)
+
 }
 
 var sc = bufio.NewScanner(os.Stdin)
@@ -66,13 +85,6 @@ func ReadIntSlice(n int) []int {
 	b := make([]int, n)
 	for i := 0; i < n; i++ {
 		b[i] = ReadInt()
-	}
-	return b
-}
-
-func min(a, b int) int {
-	if a <= b {
-		return a
 	}
 	return b
 }

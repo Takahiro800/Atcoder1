@@ -4,3 +4,10 @@
 - 2020/12/02 Atcoder Problems再開
 - 当分はGoで取り組みます
 - 年度内に着色します
+
+# Goの文法メモ
+## 同じ文字列を繰り返して連結する
+```go
+str := "abe"
+strings.Repeat(str, 3)
+```
