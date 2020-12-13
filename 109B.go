@@ -5,34 +5,51 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 var (
-	A, B string
+	N int
+	W []string
 )
 
 func main() {
-	A = Read()
-	B = Read()
-	// a, _ := strconv.Atoi(A)
-	// b, _ := strconv.Atoi(B)
+	N = ReadInt()
+	W = make([]string, N)
 
-	if len(A) == len(B) {
-		if A > B {
-			fmt.Println("GREATER")
-		} else if A < B {
-			fmt.Println("LESS")
-		} else {
-			fmt.Println("EQUAL")
+	W[0] = Read()
+	for i := 1; i < N; i++ {
+		w := Read()
+		if checkUniqueness(w, W) {
+			W[i] = w
 		}
-		return
 	}
-	if len(A) > len(B) {
-		fmt.Println("GREATER")
-		return
-	} else {
-		fmt.Println("LESS")
+
+	for i := 1; i < N; i++ {
+		w := W[i]
+		if checkContinuity(w, W[i-1]) {
+			W[i] = w
+		} else {
+			fmt.Println("No")
+			return
+		}
 	}
+
+	fmt.Println("Yes")
+
+}
+
+func checkUniqueness(target string, list []string) bool {
+	for i, _ := range list {
+		if list[i] == target {
+			return false
+		}
+	}
+	return true
+}
+
+func checkContinuity(target, prev string) bool {
+	return strings.HasSuffix(prev, returnString(target, 0))
 }
 
 var sc = bufio.NewScanner(os.Stdin)
@@ -74,4 +91,8 @@ func min(a, b int) int {
 		return a
 	}
 	return b
+}
+
+func returnString(n string, i int) string {
+	return string([]rune(n)[i])
 }

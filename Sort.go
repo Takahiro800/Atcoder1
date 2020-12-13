@@ -7,32 +7,36 @@ import (
 	"strconv"
 )
 
-var (
-	A, B string
-)
-
 func main() {
-	A = Read()
-	B = Read()
-	// a, _ := strconv.Atoi(A)
-	// b, _ := strconv.Atoi(B)
+	S := ReadIntSlice(2)
+	mergeSort(S)
+	fmt.Println(S)
+}
 
-	if len(A) == len(B) {
-		if A > B {
-			fmt.Println("GREATER")
-		} else if A < B {
-			fmt.Println("LESS")
+func merge(a, b []int) (S []int) {
+	S = []int{}
+
+	for len(a) > 0 && len(b) > 0 {
+		var s int
+		if a[0] >= b[0] {
+			s, a = a[0], a[1:]
 		} else {
-			fmt.Println("EQUAL")
+			s, b = b[0], b[1:]
 		}
-		return
+		S = append(S, s)
 	}
-	if len(A) > len(B) {
-		fmt.Println("GREATER")
-		return
-	} else {
-		fmt.Println("LESS")
-	}
+	S = append(S, a...)
+	S = append(S, b...)
+	return
+}
+
+func mergeSort(S []int) []int {
+	left := S[:len(S)/2]
+	right := S[len(S)/2:]
+	mergeSort(left)
+	mergeSort(right)
+	S = merge(left, right)
+	return S
 }
 
 var sc = bufio.NewScanner(os.Stdin)

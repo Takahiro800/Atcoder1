@@ -1,30 +1,51 @@
+package main
+
 import (
 	"bufio"
+	"fmt"
 	"math"
 	"os"
 	"strconv"
+	"strings"
 )
 
-func min(nums ...int) {
-	min := nums[0]
-	for _, n := range nums {
-		if n <= min {
-			min = n
-		}
-	}
-	return min
-}
+var (
+	S string
+)
 
-func bitSearch() {
-	for bits := 0; bits < (1 << uint64(n)); bits++ {
-		// bitsの各要素についてのループ
-		for i := 0; i < n; i++ {
-			// bitsのi個目の要素の状態がonかどうかチェック
-			if (bits>>uint64(i))&1 == 1 {
-				// 何かしらの処理
+func main() {
+	S = Read()
+	if strings.HasPrefix(S, "A") && strings.LastIndex(S, "A") == 0 {
+		c := strings.Index(S, "C")
+		if c == strings.LastIndex(S, "C") {
+			if 1 < c && c < len(S)-1 {
+				if checkUpperCount(S) < 3 {
+					fmt.Println("AC")
+					return
+				}
 			}
 		}
+
 	}
+	fmt.Println("WA")
+}
+func checkUpperCount(s string) int {
+	count := 0
+	runeS := []rune(s)
+	for i := 0; i < len(s); i++ {
+		if runeS[i] < 97 {
+			count++
+		}
+	}
+	return count
+}
+
+func pickCha(S string, i int) string {
+	return string([]rune(S)[i])
+}
+
+func pickString(S string, i, j int) string {
+	return string([]rune(S)[i : j+1])
 }
 
 var sc = bufio.NewScanner(os.Stdin)

@@ -8,31 +8,24 @@ import (
 )
 
 var (
-	A, B string
+	N int
+	b []int
 )
 
 func main() {
-	A = Read()
-	B = Read()
-	// a, _ := strconv.Atoi(A)
-	// b, _ := strconv.Atoi(B)
+	N = ReadInt()
+	b = ReadIntSlice(N - 1)
+	ans := 0
 
-	if len(A) == len(B) {
-		if A > B {
-			fmt.Println("GREATER")
-		} else if A < B {
-			fmt.Println("LESS")
+	for i := 0; i < N-1; i++ {
+		if i == 0 {
+			ans += b[i]
 		} else {
-			fmt.Println("EQUAL")
+			ans += min(b[i-1], b[i])
 		}
-		return
 	}
-	if len(A) > len(B) {
-		fmt.Println("GREATER")
-		return
-	} else {
-		fmt.Println("LESS")
-	}
+	ans += b[N-2]
+	fmt.Println(ans)
 }
 
 var sc = bufio.NewScanner(os.Stdin)
@@ -71,6 +64,13 @@ func ReadIntSlice(n int) []int {
 
 func min(a, b int) int {
 	if a <= b {
+		return a
+	}
+	return b
+}
+
+func max(a, b int) int {
+	if a >= b {
 		return a
 	}
 	return b

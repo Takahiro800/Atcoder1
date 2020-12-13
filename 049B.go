@@ -3,35 +3,22 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 )
 
 var (
-	A, B string
+	H, W int
 )
 
 func main() {
-	A = Read()
-	B = Read()
-	// a, _ := strconv.Atoi(A)
-	// b, _ := strconv.Atoi(B)
-
-	if len(A) == len(B) {
-		if A > B {
-			fmt.Println("GREATER")
-		} else if A < B {
-			fmt.Println("LESS")
-		} else {
-			fmt.Println("EQUAL")
-		}
-		return
-	}
-	if len(A) > len(B) {
-		fmt.Println("GREATER")
-		return
-	} else {
-		fmt.Println("LESS")
+	H = ReadInt()
+	W = ReadInt()
+	for i := 0; i < H; i++ {
+		s := Read()
+		fmt.Println(s)
+		fmt.Println(s)
 	}
 }
 
@@ -69,9 +56,25 @@ func ReadIntSlice(n int) []int {
 	return b
 }
 
-func min(a, b int) int {
-	if a <= b {
-		return a
+func ReadFloatSlice(n int) []float64 {
+	b := make([]float64, n)
+	for i := 0; i < n; i++ {
+		b[i] = ReadFloat()
 	}
 	return b
+}
+
+func ReadFloat() float64 {
+	v, e := strconv.ParseFloat(Read(), 64)
+	if e != nil {
+		panic(e.Error())
+	}
+	return v
+}
+
+func judgeInt(x float64) bool {
+	if math.Floor(x) == x {
+		return true
+	}
+	return false
 }

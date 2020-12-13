@@ -8,30 +8,26 @@ import (
 )
 
 var (
-	A, B string
+	A, B, K int
 )
 
 func main() {
-	A = Read()
-	B = Read()
-	// a, _ := strconv.Atoi(A)
-	// b, _ := strconv.Atoi(B)
+	A, B, K = ReadInt(), ReadInt(), ReadInt()
 
-	if len(A) == len(B) {
-		if A > B {
-			fmt.Println("GREATER")
-		} else if A < B {
-			fmt.Println("LESS")
-		} else {
-			fmt.Println("EQUAL")
+	if 2*K > B-A+1 {
+		for i := A; i <= B; i++ {
+			fmt.Println(i)
 		}
-		return
-	}
-	if len(A) > len(B) {
-		fmt.Println("GREATER")
-		return
 	} else {
-		fmt.Println("LESS")
+		for i := 0; i < K; i++ {
+			fmt.Println(A)
+			A++
+		}
+		B = B - K + 1
+		for i := 0; i < K; i++ {
+			fmt.Println(B)
+			B++
+		}
 	}
 }
 

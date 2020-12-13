@@ -3,36 +3,32 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 )
 
 var (
-	A, B string
+	N, M int
+	T    []int
+	px   []int
 )
 
 func main() {
-	A = Read()
-	B = Read()
-	// a, _ := strconv.Atoi(A)
-	// b, _ := strconv.Atoi(B)
+	N = ReadInt()
+	T = ReadIntSlice(N)
 
-	if len(A) == len(B) {
-		if A > B {
-			fmt.Println("GREATER")
-		} else if A < B {
-			fmt.Println("LESS")
-		} else {
-			fmt.Println("EQUAL")
-		}
-		return
+	sumTime := 0
+	for i := 0; i < N; i++ {
+		sumTime += T[i]
 	}
-	if len(A) > len(B) {
-		fmt.Println("GREATER")
-		return
-	} else {
-		fmt.Println("LESS")
+
+	M = ReadInt()
+	for i := 0; i < M; i++ {
+		px = ReadIntSlice(2)
+		fmt.Println(sumTime + px[1] - T[px[0]-1])
 	}
+
 }
 
 var sc = bufio.NewScanner(os.Stdin)
@@ -69,9 +65,25 @@ func ReadIntSlice(n int) []int {
 	return b
 }
 
-func min(a, b int) int {
-	if a <= b {
-		return a
+func ReadFloatSlice(n int) []float64 {
+	b := make([]float64, n)
+	for i := 0; i < n; i++ {
+		b[i] = ReadFloat()
 	}
 	return b
+}
+
+func ReadFloat() float64 {
+	v, e := strconv.ParseFloat(Read(), 64)
+	if e != nil {
+		panic(e.Error())
+	}
+	return v
+}
+
+func judgeInt(x float64) bool {
+	if math.Floor(x) == x {
+		return true
+	}
+	return false
 }

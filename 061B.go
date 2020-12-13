@@ -8,30 +8,18 @@ import (
 )
 
 var (
-	A, B string
+	N, M int
 )
 
 func main() {
-	A = Read()
-	B = Read()
-	// a, _ := strconv.Atoi(A)
-	// b, _ := strconv.Atoi(B)
-
-	if len(A) == len(B) {
-		if A > B {
-			fmt.Println("GREATER")
-		} else if A < B {
-			fmt.Println("LESS")
-		} else {
-			fmt.Println("EQUAL")
-		}
-		return
+	N, M = ReadInt(), ReadInt()
+	ans := make([]int, N)
+	for i := 0; i < 2*M; i++ {
+		a := ReadInt()
+		ans[a-1]++
 	}
-	if len(A) > len(B) {
-		fmt.Println("GREATER")
-		return
-	} else {
-		fmt.Println("LESS")
+	for _, v := range ans {
+		fmt.Println(v)
 	}
 }
 

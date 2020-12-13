@@ -1,30 +1,41 @@
+package main
+
 import (
 	"bufio"
+	"fmt"
 	"math"
 	"os"
 	"strconv"
 )
 
-func min(nums ...int) {
-	min := nums[0]
-	for _, n := range nums {
-		if n <= min {
-			min = n
+var (
+	N    int
+	T, A float64
+	H    []float64
+)
+
+func main() {
+	N = ReadInt()
+	T = ReadFloat()
+	A = ReadFloat()
+	H = ReadFloatSlice(N)
+
+	dif := 10000.0
+	ans := 0
+	for i := 0; i < N; i++ {
+		t := calcTemperature(T, H[i])
+		d := absFloat(A - t)
+		if d < dif {
+			dif = d
+			ans = i + 1
 		}
 	}
-	return min
+	fmt.Println(ans)
 }
 
-func bitSearch() {
-	for bits := 0; bits < (1 << uint64(n)); bits++ {
-		// bitsの各要素についてのループ
-		for i := 0; i < n; i++ {
-			// bitsのi個目の要素の状態がonかどうかチェック
-			if (bits>>uint64(i))&1 == 1 {
-				// 何かしらの処理
-			}
-		}
-	}
+func calcTemperature(T, x float64) float64 {
+	t := T - x*0.006
+	return t
 }
 
 var sc = bufio.NewScanner(os.Stdin)
@@ -82,4 +93,11 @@ func judgeInt(x float64) bool {
 		return true
 	}
 	return false
+}
+
+func absFloat(a float64) float64 {
+	if a >= 0 {
+		return a
+	}
+	return -1 * a
 }
