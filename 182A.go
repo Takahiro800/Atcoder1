@@ -5,27 +5,16 @@ import (
 	"fmt"
 	"math"
 	"os"
-	"sort"
 	"strconv"
 )
 
 var (
-	N, L int
-	S    []string
+	A, B int
 )
 
 func main() {
-	N, L = ReadInt(), ReadInt()
-	S = make([]string, N)
-
-	for i := 0; i < N; i++ {
-		S[i] = Read()
-	}
-	sort.Strings(S)
-	ans := ""
-	for i := 0; i < N; i++ {
-		ans += S[i]
-	}
+	A, B = ReadInt(), ReadInt()
+	ans := 2*A + 100 - B
 	fmt.Println(ans)
 }
 

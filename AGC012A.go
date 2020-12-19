@@ -10,25 +10,25 @@ import (
 )
 
 var (
-	N, L int
-	S    []string
+	N int
+	a []int
 )
 
 func main() {
-	N, L = ReadInt(), ReadInt()
-	S = make([]string, N)
+	N = ReadInt()
+	a = ReadIntSlice(3 * N)
 
+	sort.Sort(sort.Reverse(sort.IntSlice(a)))
+	ans := 0
 	for i := 0; i < N; i++ {
-		S[i] = Read()
-	}
-	sort.Strings(S)
-	ans := ""
-	for i := 0; i < N; i++ {
-		ans += S[i]
+		ans += a[i*2+1]
 	}
 	fmt.Println(ans)
 }
 
+// snipet
+
+//INF_BIT60 = 1 << 60
 var sc = bufio.NewScanner(os.Stdin)
 
 func input() string {
@@ -36,9 +36,9 @@ func input() string {
 	return sc.Text()
 }
 
-func init()        { sc.Buffer(make([]byte, 256), 1e9); sc.Split(bufio.ScanWords) }
-func Read() string { sc.Scan(); return sc.Text() }
+func init() { sc.Buffer(make([]byte, 256), 1e9); sc.Split(bufio.ScanWords) }
 
+func Read() string { sc.Scan(); return sc.Text() }
 func ReadInt() int {
 	v, e := strconv.Atoi(Read())
 	if e != nil {
@@ -46,7 +46,6 @@ func ReadInt() int {
 	}
 	return v
 }
-
 func ReadString() string {
 	if !sc.Scan() {
 		panic(sc.Err())
@@ -54,7 +53,6 @@ func ReadString() string {
 	return sc.Text()
 }
 
-// ReadInstSlice returns an integer slice that han n integers.
 func ReadIntSlice(n int) []int {
 	b := make([]int, n)
 	for i := 0; i < n; i++ {
@@ -78,7 +76,6 @@ func ReadFloat() float64 {
 	}
 	return v
 }
-
 func judgeInt(x float64) bool {
 	if math.Floor(x) == x {
 		return true
