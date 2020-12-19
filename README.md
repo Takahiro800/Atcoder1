@@ -11,3 +11,14 @@
 str := "abe"
 strings.Repeat(str, 3)
 ```
+## 指定した桁の数字を取得したい
+- byte型になる
+- 1の値が49なので、48を引いてあげれば良い
+- int型に変換する場合は `int()`
+```go
+s string
+a byte
+
+num = a - 48
+numInt := int(num)
+```
