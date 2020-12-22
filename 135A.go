@@ -6,25 +6,22 @@ import (
 	"math"
 	"os"
 	"strconv"
-	"strings"
 )
 
 var (
-	S                string
-	a, b, c, d, e, f int
+	A, B int
 )
 
 func main() {
-	S = Read()
+	A = ReadInt()
+	B = ReadInt()
 
-	a = strings.Count(S, "A")
-	b = strings.Count(S, "B")
-	c = strings.Count(S, "C")
-	d = strings.Count(S, "D")
-	e = strings.Count(S, "E")
-	f = strings.Count(S, "F")
-
-	fmt.Println(a, b, c, d, e, f)
+	if A%2 != B%2 {
+		fmt.Println("IMPOSSIBLE")
+		return
+	}
+	ans := (A + B) / 2
+	fmt.Println(ans)
 }
 
 // snipet

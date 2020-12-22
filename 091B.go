@@ -6,25 +6,40 @@ import (
 	"math"
 	"os"
 	"strconv"
-	"strings"
 )
 
 var (
-	S                string
-	a, b, c, d, e, f int
+	n, m int
+	s, t map[string]int
 )
 
 func main() {
-	S = Read()
-
-	a = strings.Count(S, "A")
-	b = strings.Count(S, "B")
-	c = strings.Count(S, "C")
-	d = strings.Count(S, "D")
-	e = strings.Count(S, "E")
-	f = strings.Count(S, "F")
-
-	fmt.Println(a, b, c, d, e, f)
+	n = ReadInt()
+	s = make(map[string]int)
+	for i := 0; i < n; i++ {
+		key := Read()
+		if _, ok := s[key]; ok {
+			s[key]++
+		} else {
+			s[key] = 1
+		}
+	}
+	m = ReadInt()
+	for i := 0; i < m; i++ {
+		key := Read()
+		if _, ok := s[key]; ok {
+			s[key]--
+		} else {
+			s[key] = -1
+		}
+	}
+	sum := 0
+	for _, v := range s {
+		if sum < v {
+			sum = v
+		}
+	}
+	fmt.Println(sum)
 }
 
 // snipet

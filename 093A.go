@@ -10,21 +10,16 @@ import (
 )
 
 var (
-	S                string
-	a, b, c, d, e, f int
+	S string
 )
 
 func main() {
 	S = Read()
-
-	a = strings.Count(S, "A")
-	b = strings.Count(S, "B")
-	c = strings.Count(S, "C")
-	d = strings.Count(S, "D")
-	e = strings.Count(S, "E")
-	f = strings.Count(S, "F")
-
-	fmt.Println(a, b, c, d, e, f)
+	if strings.Contains(S, "a") && strings.Contains(S, "b") && strings.Contains(S, "c") {
+		fmt.Println("Yes")
+		return
+	}
+	fmt.Println("No")
 }
 
 // snipet

@@ -6,25 +6,21 @@ import (
 	"math"
 	"os"
 	"strconv"
-	"strings"
 )
 
 var (
-	S                string
-	a, b, c, d, e, f int
+	X, Y int
 )
 
 func main() {
-	S = Read()
-
-	a = strings.Count(S, "A")
-	b = strings.Count(S, "B")
-	c = strings.Count(S, "C")
-	d = strings.Count(S, "D")
-	e = strings.Count(S, "E")
-	f = strings.Count(S, "F")
-
-	fmt.Println(a, b, c, d, e, f)
+	X, Y = ReadInt(), ReadInt()
+	count := 0
+	i := X
+	for i <= Y {
+		count++
+		i *= 2
+	}
+	fmt.Println(count)
 }
 
 // snipet

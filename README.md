@@ -22,3 +22,8 @@ a byte
 num = a - 48
 numInt := int(num)
 ```
+
+## 文字列中の特定の文字をカウントしたい
+```go
+strings.Count(文字列, 特定の文字 string ) int
+```

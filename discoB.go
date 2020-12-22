@@ -6,25 +6,26 @@ import (
 	"math"
 	"os"
 	"strconv"
-	"strings"
 )
 
 var (
-	S                string
-	a, b, c, d, e, f int
+	N int
+	A []int
 )
 
 func main() {
-	S = Read()
+	N = ReadInt()
+	A = ReadIntSlice(N)
+	sum := 0
 
-	a = strings.Count(S, "A")
-	b = strings.Count(S, "B")
-	c = strings.Count(S, "C")
-	d = strings.Count(S, "D")
-	e = strings.Count(S, "E")
-	f = strings.Count(S, "F")
+	for _, v := range A {
+		sum += v
+	}
+	half := sum / 2
+	left := 0
+	right := sum
+	fmt.Println(left)
 
-	fmt.Println(a, b, c, d, e, f)
 }
 
 // snipet
