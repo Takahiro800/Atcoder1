@@ -27,3 +27,28 @@ numInt := int(num)
 ```go
 strings.Count(文字列, 特定の文字 string ) int
 ```
+
+## 構造体をsortする
+`sort.Slice("構造体のスライス", func(i,j int) bool { 比較条件 })`　でソートできる
+
+```go
+type shop struct {
+  name string
+  point int
+}
+
+func sort_shop {
+  sort.Slice(shop_list, func(i,j int) bool {
+    if shop_list[i].name == shop_list[j].name {
+          shop_list[i].point > shop_list[j].point
+    } else {
+          shop_list[i].name <shop_list[j].name
+    }
+  })
+}
+```
+
+## 文字列の先頭の文字を取り出したい
+```go
+
+```

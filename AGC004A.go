@@ -5,51 +5,34 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"sort"
 	"strconv"
 )
 
 var (
-	N int
-	A []int
+	a, b, c int
 )
 
 func main() {
-	N = ReadInt()
-	A = ReadIntSlice(N)
-	sum := 0
+	X := ReadIntSlice(3)
+	a = X[0]
+	b = X[1]
+	c = X[2]
+	ans := 0
 
-	for _, v := range A {
-		sum += v
+	if a%2 == 0 || b%2 == 0 || c%2 == 0 {
+		ans = 0
+	} else {
+		sort.Sort((sort.IntSlice(X)))
+		ans = X[0] * X[1]
 	}
-
-	left := 0
-	right := sum
-	min_diff := sum
-
-	for _, v := range A {
-		left += v
-		right -= v
-		diff := abs(left - right)
-		if min_diff > diff {
-			min_diff = diff
-		}
-	}
-
-	fmt.Println(min_diff)
-
+	fmt.Println(ans)
 }
 
 // snipet
 
 // INF_BIT60 = 1 << 60
 var sc = bufio.NewScanner(os.Stdin)
-
-func abs(a int) int {
-	if a < 0 {
-		return -1 * a
-	}
-	return a
-}
 
 func input() string {
 	sc.Scan()

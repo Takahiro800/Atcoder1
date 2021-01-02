@@ -5,51 +5,46 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"sort"
 	"strconv"
 )
 
 var (
-	N int
-	A []int
+	N, M int
 )
+
+type shop struct {
+	cost, num int
+}
 
 func main() {
 	N = ReadInt()
-	A = ReadIntSlice(N)
-	sum := 0
-
-	for _, v := range A {
-		sum += v
+	M = ReadInt()
+	shop_list := make([]shop, N)
+	for i := range shop_list {
+		shop_list[i].cost = ReadInt()
+		shop_list[i].num = ReadInt()
 	}
-
-	left := 0
-	right := sum
-	min_diff := sum
-
-	for _, v := range A {
-		left += v
-		right -= v
-		diff := abs(left - right)
-		if min_diff > diff {
-			min_diff = diff
+	sort.Slice(shop_list, func(i, j int) bool {
+		return shop_list[i].cost < shop_list[j].cost
+	})
+	ans := 0
+	for i := 0; i < N; i++ {
+		if M > shop_list[i].num {
+			M -= shop_list[i].num
+			ans += shop_list[i].cost * shop_list[i].num
+		} else {
+			ans += shop_list[i].cost * M
+			break
 		}
 	}
-
-	fmt.Println(min_diff)
-
+	fmt.Println(ans)
 }
 
 // snipet
 
 // INF_BIT60 = 1 << 60
 var sc = bufio.NewScanner(os.Stdin)
-
-func abs(a int) int {
-	if a < 0 {
-		return -1 * a
-	}
-	return a
-}
 
 func input() string {
 	sc.Scan()

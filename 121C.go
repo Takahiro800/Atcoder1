@@ -5,51 +5,45 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"sort"
 	"strconv"
 )
 
 var (
-	N int
-	A []int
+	N, M int
 )
 
 func main() {
 	N = ReadInt()
-	A = ReadIntSlice(N)
-	sum := 0
-
-	for _, v := range A {
-		sum += v
+	M = ReadInt()
+	set := make([]shop, N)
+	for i := 0; i < N; i++ {
+		set[i] = make([]int, 2)
+		set[i][0] = ReadInt()
+		set[i][1] = ReadInt()
 	}
 
-	left := 0
-	right := sum
-	min_diff := sum
+	fmt.Println(len(set))
+}
 
-	for _, v := range A {
-		left += v
-		right -= v
-		diff := abs(left - right)
-		if min_diff > diff {
-			min_diff = diff
-		}
-	}
+type shop []int
 
-	fmt.Println(min_diff)
+func (el shop) Len() int {
+	return len(el)
+}
 
+func (el shop) Swap(i, j int) {
+	el[i], el[j] = el[j], el[i]
+}
+
+func (el shop) Less(i, j int) bool {
+	return el[i] > el[j]
 }
 
 // snipet
 
 // INF_BIT60 = 1 << 60
 var sc = bufio.NewScanner(os.Stdin)
-
-func abs(a int) int {
-	if a < 0 {
-		return -1 * a
-	}
-	return a
-}
 
 func input() string {
 	sc.Scan()

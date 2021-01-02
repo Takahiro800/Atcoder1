@@ -10,46 +10,32 @@ import (
 
 var (
 	N int
-	A []int
+	h []int
 )
 
 func main() {
 	N = ReadInt()
-	A = ReadIntSlice(N)
-	sum := 0
+	h = ReadIntSlice(N)
 
-	for _, v := range A {
-		sum += v
-	}
-
-	left := 0
-	right := sum
-	min_diff := sum
-
-	for _, v := range A {
-		left += v
-		right -= v
-		diff := abs(left - right)
-		if min_diff > diff {
-			min_diff = diff
+	for i := 0; i < N; i++ {
+		if i == 0 {
+			h[i]--
+		} else {
+			if h[i-1] > h[i] {
+				fmt.Println("No")
+				return
+			} else if h[i-1] < h[i] {
+				h[i]--
+			}
 		}
 	}
-
-	fmt.Println(min_diff)
-
+	fmt.Println("Yes")
 }
 
 // snipet
 
 // INF_BIT60 = 1 << 60
 var sc = bufio.NewScanner(os.Stdin)
-
-func abs(a int) int {
-	if a < 0 {
-		return -1 * a
-	}
-	return a
-}
 
 func input() string {
 	sc.Scan()
