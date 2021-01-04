@@ -1,15 +1,8 @@
 N = int(input())
 
-S = [""]*N
-
-for i in range(N):
-  x = input()
-  if "!"+x in S:
-    print(x)
+S = set(input() for i in range(N))
+for s in S:
+  if "!"+s in S:
+    print(s)
     exit()
-  elif x[1:] in S:
-    print(x[1:])
-    exit()
-  S[i] = x
-
 print("satisfiable")

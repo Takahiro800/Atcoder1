@@ -5,34 +5,28 @@ import (
 	"fmt"
 	"math"
 	"os"
-	"sort"
 	"strconv"
 )
 
 var (
 	N int
-	v []int
+	m map[string]bool
 )
 
 func main() {
 	N = ReadInt()
-	total := 0
-
-	v = make([]int, N)
+	m = make(map[string]bool)
 	for i := 0; i < N; i++ {
-		a, b := ReadInt(), ReadInt()
-		total += a
-		v[i] = 2*a + b
+		s := Read()
+		m[s] = true
 	}
-	sort.Sort(sort.Reverse(sort.IntSlice(v)))
-	sum := 0
-	for i := 0; i < len(v); i++ {
-		sum += v[i]
-		if sum > total {
-			fmt.Println(i + 1)
+	for s := range m {
+		if m[s] && m["!"+s] {
+			fmt.Println(s)
 			return
 		}
 	}
+	fmt.Println("satisfiable")
 }
 
 // snipet

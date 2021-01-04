@@ -10,29 +10,18 @@ import (
 )
 
 var (
-	N int
-	v []int
+	A []int
 )
 
 func main() {
-	N = ReadInt()
-	total := 0
+	A = ReadIntSlice(3)
 
-	v = make([]int, N)
-	for i := 0; i < N; i++ {
-		a, b := ReadInt(), ReadInt()
-		total += a
-		v[i] = 2*a + b
+	sort.Sort(sort.IntSlice(A))
+	if A[0] == 5 && A[1] == 5 && A[2] == 7 {
+		fmt.Println("YES")
+		return
 	}
-	sort.Sort(sort.Reverse(sort.IntSlice(v)))
-	sum := 0
-	for i := 0; i < len(v); i++ {
-		sum += v[i]
-		if sum > total {
-			fmt.Println(i + 1)
-			return
-		}
-	}
+	fmt.Println("NO")
 }
 
 // snipet

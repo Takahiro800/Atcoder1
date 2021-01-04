@@ -28,6 +28,11 @@ numInt := int(num)
 strings.Count(文字列, 特定の文字 string ) int
 ```
 
+## スライスをsortする
+`sort.Sort(sort.IntSlice(v))`でint型のスライスをソートする
+
+
+
 ## 構造体をsortする
 `sort.Slice("構造体のスライス", func(i,j int) bool { 比較条件 })`　でソートできる
 
@@ -48,7 +53,11 @@ func sort_shop {
 }
 ```
 
-## 文字列の先頭の文字を取り出したい
+## とりあえずスライスを作成して、追加していく
 ```go
+//長さ０のスライスを用意
+v := make([]int, 0)
 
+//末尾に追加する
+v = append(v, element)
 ```
