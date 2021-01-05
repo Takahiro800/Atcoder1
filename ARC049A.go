@@ -9,18 +9,19 @@ import (
 )
 
 var (
-	S string
-	A []int
+	S          string
+	a, b, c, d int
 )
 
 func main() {
 	S = Read()
-	A = ReadIntSlice(4)
+	a = ReadInt()
+	b = ReadInt()
+	c = ReadInt()
+	d = ReadInt()
 
-	for i := 0; i < 4; i++ {
-		fmt.Println(S[i])
-	}
-	fmt.Println(S)
+	ans := S[:a] + `"` + S[a:b] + `"` + S[b:c] + `"` + S[c:d] + `"` + S[d:]
+	fmt.Println(ans)
 
 }
 

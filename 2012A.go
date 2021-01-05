@@ -14,17 +14,17 @@ var (
 
 func main() {
 	n = ReadInt()
-	ans := 1
 
-	if n > 1 {
-		if n == 2 {
-			ans += 1
-		} else {
-			ans += (n-2)*(n-1)/2 + 1
-		}
+	fmt.Println(fib(n))
+}
+
+func fib(n int) int {
+	a, b := 1, 1
+	for i := 1; i < n; i++ {
+		b += a
+		a = b - a
 	}
-
-	fmt.Println(ans)
+	return b
 }
 
 // snipet
