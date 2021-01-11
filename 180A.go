@@ -9,33 +9,17 @@ import (
 )
 
 var (
-	N, C int
+	N, A, B int
 )
 
 func main() {
 	N = ReadInt()
-	C = ReadInt()
+	A = ReadInt()
+	B = ReadInt()
 
-	m := make(map[int]int)
-	for i := 0; i < N; i++ {
-		sur := ReadIntSlice(3)
-		a := sur[0]
-		b := sur[1]
-		c := sur[2]
-
-		m[a] += c
-		m[b+1] -= c
-	}
-	day := 1
-	cost := 0
-
-	for i, v := range m {
-		
-	}
-
+	ans := N - A + B
+	fmt.Println(ans)
 }
-
-// https://qiita.com/kzkiq2nd/items/8f7258ebc030425785f6
 
 // snipet
 
