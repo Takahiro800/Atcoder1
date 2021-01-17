@@ -9,38 +9,22 @@ import (
 )
 
 var (
-	N int
+	N, K, X, Y int
 )
-
-type button struct {
-	next int
-	flag bool
-}
 
 func main() {
 	N = ReadInt()
-	button_list := make([]button, N)
-	for i := 0; i < N; i++ {
-		button_list[i].next = ReadInt()
-		button_list[i].flag = false
-	}
-
-	solve(button_list, 1, 1)
-}
-
-func solve(A []button, hoge, ans int) {
-	a := A[hoge-1].next
-	if A[a-1].flag == true {
-		fmt.Println(-1)
-		return
-	} else if a == 2 {
-		fmt.Println(ans)
-		return
+	K = ReadInt()
+	X = ReadInt()
+	Y = ReadInt()
+	ans := 0
+	if N > K {
+		ans = X*K + Y*(N-K)
 	} else {
-		ans += 1
-		A[hoge-1].flag = true
-		solve(A, a, ans)
+		ans = X * N
 	}
+
+	fmt.Println(ans)
 }
 
 // snipet
