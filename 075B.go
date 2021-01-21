@@ -9,14 +9,42 @@ import (
 )
 
 var (
-	N, A int
+	H, W int
 )
-	
-func main() {
-	N = ReadInt()
-	A = ReadInt()
 
-	fmt.Println(N*N - A)
+func main() {
+	H = ReadInt()
+	W = ReadInt()
+
+	S := make([][]byte, H)
+
+	for i := 0; i < H; i++ {
+		S[i] = ReadByteSlice(W)
+	}
+
+	for i := 0; i < H; i++ {
+		for j := 0; j < W; j++ {
+			if S[i][j] == '.' {
+				count := 0
+				for a := -1; a < 2; a++ {
+					for b := -1; b < 2; b++ {
+						y := i + a
+						x := j + b
+						if y < 0 || y >= H || x < 0 || x >= W {
+							continue
+						}
+						if S[y][x] == '#' {
+							count++
+						}
+					}
+				}
+				S[i][j] = strconv.Itoa(count)[0]
+			}
+		}
+	}
+	for i := 0; i < H; i++ {
+		fmt.Println(string(S[i]))
+	}
 }
 
 // snipet
@@ -74,4 +102,17 @@ func judgeInt(x float64) bool {
 		return true
 	}
 	return false
+}
+
+func ReadByte() []byte {
+	v := []byte(Read())
+	return v
+}
+
+func ReadByteSlice(n int) []byte {
+	b := make([][]byte, n)
+	for i := 0; i < n; i++ {
+		b[i] = ReadByte()
+	}
+	return b
 }

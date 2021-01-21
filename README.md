@@ -61,3 +61,6 @@ v := make([]int, 0)
 //末尾に追加する
 v = append(v, element)
 ```
+
+## 型変換
+#### int → float

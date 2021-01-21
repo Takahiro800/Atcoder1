@@ -9,14 +9,40 @@ import (
 )
 
 var (
-	N, A int
+	S string
 )
-	
-func main() {
-	N = ReadInt()
-	A = ReadInt()
 
-	fmt.Println(N*N - A)
+func main() {
+	S = Read()
+	ans := 0
+
+	n := len(S)
+	ls := make([]int, n+1)
+	rs := make([]int, n+1)
+
+	for i := 0; i < n; i++ {
+		if S[i] == '<' {
+			ls[i+1] = ls[i] + 1
+		}
+
+		j := n - i - 1
+		if S[j] == '>' {
+			rs[j] = rs[j+1] + 1
+		}
+	}
+
+	for i := 0; i <= n; i++ {
+		ans += large(ls[i], rs[i])
+	}
+	fmt.Println(ans)
+
+}
+
+func large(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 // snipet

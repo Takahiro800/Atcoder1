@@ -9,14 +9,26 @@ import (
 )
 
 var (
-	N, A int
+	A, B, C int
 )
-	
-func main() {
-	N = ReadInt()
-	A = ReadInt()
 
-	fmt.Println(N*N - A)
+func main() {
+	A = ReadInt()
+	B = ReadInt()
+	C = ReadInt()
+
+	ans := 0
+
+	if A == B {
+		ans = C
+	} else if B == C {
+		ans = A
+	} else {
+		ans = B
+	}
+
+	fmt.Println(ans)
+
 }
 
 // snipet

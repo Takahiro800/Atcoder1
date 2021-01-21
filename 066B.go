@@ -9,14 +9,21 @@ import (
 )
 
 var (
-	N, A int
+	S string
 )
-	
-func main() {
-	N = ReadInt()
-	A = ReadInt()
 
-	fmt.Println(N*N - A)
+func main() {
+	S = Read()
+	n := len(S)
+
+	for i := 2; i < n; i += 2 {
+		k := n - i
+		half := k / 2
+		if S[:half] == S[half:k] {
+			fmt.Println(k)
+			return
+		}
+	}
 }
 
 // snipet

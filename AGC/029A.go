@@ -9,14 +9,22 @@ import (
 )
 
 var (
-	N, A int
+	S string
 )
-	
-func main() {
-	N = ReadInt()
-	A = ReadInt()
 
-	fmt.Println(N*N - A)
+func main() {
+	S = Read()
+
+	rec := 0
+	ans := 0
+	for i := 0; i < len(S); i++ {
+		if S[i] == 'W' {
+			ans += rec
+		} else {
+			rec++
+		}
+	}
+	fmt.Println(ans)
 }
 
 // snipet

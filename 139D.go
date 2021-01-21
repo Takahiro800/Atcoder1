@@ -9,14 +9,14 @@ import (
 )
 
 var (
-	N, A int
+	n int
 )
-	
-func main() {
-	N = ReadInt()
-	A = ReadInt()
 
-	fmt.Println(N*N - A)
+func main() {
+	n = ReadInt()
+
+	ans := (n - 1) * n / 2
+	fmt.Println(ans)
 }
 
 // snipet
